@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>post messages project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container ">
+        <!-- top image -->
+        <img src="img/top01.jpg" class="img-fluid mb-5" alt="Responsive image">
+        <!-- /top image -->
+        
+
+        <!-- title -->
+        <h1 class="mb-3">Post Messages Project</h1>
+        <!-- /title -->
+        
+        
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning mb-5"><a class="navbar-brand" href="#"></a><button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">top</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#profile">このProjectの願い</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#messages">寄せられたメッセージ一覧</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#table">昨日までの投稿数</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#post">メッセージを投稿する</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /navbar -->
+        
+        
+        <!-- profile -->
+        <h1 id="profile" class="mb-3">このProjectの願い</h1>
+        <p class="text-justify">このサイトでは、どなたでも簡単に投稿できるように敢えてユーザー登録・ログイン機能を設けておりません。</p>
+        <p class="text-justify">みなさまには、一つ一つのメッセージを大切に投稿いただくようご協力お願いします。</p>
+        <p class="text-justify">今この瞬間にも、</p>
+        <p class="text-justify">コロナウイルスの拡散を食い止めるために働いている人に、感謝を伝えよう。</p>
+        <p class="text-justify">ウイルスに感染して苦しんでいる人に、励ましの言葉を送ろう。</p>
+        <p class="text-justify">孤独に耐えながら自宅待機している人に、勇気を届けよう。</p>
+        <p class="text-justify">会ったこともない誰かにメッセージを発信し、会ったことのない誰かが発信したメッセージに励まされる。</p>
+        <p class="text-justify">みんなで前を向いて、コロナウイルスを乗り切る、そんなプラットフォームをつくりました。</p>
+        <p class="text-justify">国や企業がやるべきこと。やってほしいこと。確かにあります。</p>
+        <p class="text-justify">ただ、それを待っているだけではなくて、私たちにもできることをちょっとだけ始めてみませんか。</p>
+        <p class="text-justify">昨日までの感染者数よりも、多くのメッセージが今日発信されることを願っています。</p>
+        <!-- /profile -->
+        
+
+        
+        
+        <!-- list -->
+        <h1 class="mt-5 mb-2">寄せられたメッセージ一覧</h1>
+        <ul id="messages" class="mb-5"></ul>
+        <!-- /list -->
+        
+        
+        <!-- table -->
+        <h1 id="table" class="mt-5">昨日までの投稿数</h1>
+        <table class="table table-hover mb-5">
+            <thead>
+                <tr>
+                    <th scope="col">都道府県</th>
+                    <th scope="col">昨日までの感染者数</th>
+                    <th scope="col">昨日までの投稿数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">全国</th>
+                    <td>3,654</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">東京</th>
+                    <td>897</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">大阪</th>
+                    <td>388</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /table -->
+        
+        
+        <!-- post -->
+        <h1 class="mt-5 mb-2">メッセージを投稿する</h1>
+        <form autocomplete="off" id="post">
+            <input type="text" id="message" placeholder="your message...">
+        </form>
+        <!-- /post -->
+        
+        
+        <!-- copyright -->
+        <div class="bg-warning mt-5">
+            <p class="text-center text-dark py-3 m-0"><small>©2020 Post Messages Project</small></p>
+        </div>
+        <!-- /copyright -->
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>
