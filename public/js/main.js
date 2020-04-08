@@ -10,16 +10,23 @@ const firebaseConfig = {
     appId: "1:258093825171:web:bd00a98ac9ac8bb86ea166",
     measurementId: "G-VR2BX6S7X7"
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
   const db = firebase.firestore();
-  const collection = db.collection('messages');
+  const storage = firebase.storage();
 
+  const collection = db.collection('messages');
   const message = document.getElementById('message');
   const form = document.querySelector('form');
   const messages = document.getElementById('messages');
+  const setfile = document.getElementById("setfile");
+  const imgSample = document.getElementById("imgSample");
+
+  var file_name;
+  var blob;
 
   collection.orderBy('created').onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
@@ -30,31 +37,73 @@ const firebaseConfig = {
             }
       })
   }) 
-
-
+  
 
   form.addEventListener('submit', e => {
-    e.preventDefault();
+      e.preventDefault();
+      
+      const val = message.value.trim();
+      if (val == ""){
+          return;
+        }
+        
+        message.value = '';
+        message.focus();
+        
+        collection.add({
+            message: val,
+            created: firebase.firestore.FieldValue.serverTimestamp(),
+            //以下、今後作成予定 
+            // category: ,
+            // prefecture:
+        })
 
-    const val = message.value.trim();
-    if (val == ""){
-        return;
-    }
-
-    message.value = '';
-    message.focus();
-
-    collection.add({
-        message: val,
-        created: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(doc => {
-        console.log(`${doc.id} added!`);
-    })
-    .catch(error => {
-        console.log(error);
+        //処理に成功
+        .then(doc => {
+            console.log(`${doc.id} added!`);
+        })
+        //エラー処理
+        .catch(error => {
+            console.log(error);
+        });
     });
-  });
+    
+    setfile.addEventListener("change", e => {
+        var file = e.target.files;
+        // fileの名前を取得
+        file_name = file[0].name;
+        // blob形式に変換
+        blob = new Blob(file, { type: "image/jpeg" });
+        console.warn(blob);
+    });
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        var uploadRef = storage.ref('images/').child(file_name);
+        uploadRef.put(blob).then(snapshot => {
+            console.log(snapshot.state);
+            // アップロードしたファイルのurlを取得
+            uploadRef.getDownloadURL();
+            collection.add({
+                created: firebase.firestore.FieldValue.serverTimestamp(),
+                filepath: file_name,
+                //以下、今後作成予定 
+                //category: ,
+                // prefecture:
+            })
+            
+            .then(url => {
+            // htmlに表示する
+               imgSample.style.backgroundImage = "url("+url+")";
+            }).catch(error => {
+                console.log(error);
+            });
+        });
+        // valueリセットする
+        file_name = '';
+        blob = '';
+    });
 
   message.focus();
 
