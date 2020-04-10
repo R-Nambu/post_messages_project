@@ -15,6 +15,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+
 const db = firebase.firestore();
 const storage = firebase.storage();
 
@@ -34,6 +35,11 @@ collection.orderBy('created').onSnapshot(snapshot => {
             const li = document.createElement('li');
             li.textContent = change.doc.data().message;
             messages.appendChild(li);
+            
+            const img = document.createElement('img');
+            img.src = change.doc.data().url;
+            img.height = 200; 
+            li.appendChild(img);
         }
     })
 });
@@ -70,9 +76,7 @@ form.addEventListener('submit', e => {
     
 setfile.addEventListener('change', e => {
     var file = e.target.files;
-    // fileの名前を取得
     file_name = file[0].name;
-    // blob形式に変換
     blob = new Blob(file, { type: 'image/jpeg' });
     console.warn(blob);
     
@@ -95,7 +99,8 @@ setfile.addEventListener('change', e => {
                 })
             }).catch(error => {
                 console.log(error);
-            }); 
+            });
+                
         });
         // valueリセットする
         file_name = '';
