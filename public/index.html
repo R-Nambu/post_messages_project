@@ -28,9 +28,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="#">top</a></li>
                     <li class="nav-item"><a class="nav-link" href="#profile">このProjectの願い</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#messages">寄せられたメッセージ一覧</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#posts">寄せられたメッセージ一覧</a></li>
                     <li class="nav-item"><a class="nav-link" href="#table">昨日までの投稿数</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#post">メッセージを投稿する</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#submit">メッセージを投稿する</a></li>
                 </ul>
             </div>
         </nav>
@@ -56,8 +56,33 @@
         
         
         <!-- list -->
-        <h1 class="mt-5 mb-2">寄せられたメッセージ一覧</h1>
-        <ul id="messages" class="mb-5"></ul>
+        <h1 id="posts" class="mt-5 mb-2">寄せられたメッセージ一覧</h1>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="frontline-tab" data-toggle="tab" href="#frontline" role="tab" aria-controls="frontline" aria-selected="true">医療従事者の方々へ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="stayhome-tab" data-toggle="tab" href="#stayhome" role="tab" aria-controls="stayhome" aria-selected="false">Stay Home　お家で過ごそう！</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="infected-tab" data-toggle="tab" href="#infected" role="tab" aria-controls="infected" aria-selected="false">感染者の方々へ</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="messages">
+            <div class="tab-pane fade show active" id="frontline" role="tabpanel" aria-labelledby="frontline-tab">
+                <ul id="messages_frontline" class="mb-5"></ul>
+            </div>
+            <div class="tab-pane fade" id="stayhome" role="tabpanel" aria-labelledby="stayhome-tab">
+                <ul id="messages_stayhome" class="mb-5"></ul>
+            </div>
+            <div class="tab-pane fade" id="infected" role="tabpanel" aria-labelledby="infected-tab">
+                <ul id="messages_infected" class="mb-5"></ul>
+            </div>
+        </div>
+
+
+        <!-- <ul id="messages" class="mb-5"></ul> -->
         <!-- /list -->
         
         
@@ -74,7 +99,7 @@
             <tbody>
                 <tr>
                     <th scope="row">全国</th>
-                    <td>6,169</td>
+                    <td>6,748</td>
                     <td>
                         <script type="text/javascript">
                             console.log("aaa");
@@ -96,21 +121,27 @@
         <!-- /table -->
         
         
-        <!-- post -->
-        <h1 class="mt-5 mb-2">メッセージを投稿する</h1>
+        <!-- form -->
+        <h1 id="submit" class="mt-5 mb-2">メッセージを投稿する</h1>
         <form>
-            <div class="form-group"　autocomplete="off" id="post"></div>
-                <input type="text" id="message" placeholder="your message..." class="mb-2">
-            <div>
-                <input type="file" id="setfile">
-                <!-- <input type="submit" value="投稿"> -->
-                <button type="submit" class="btn btn-primary btn-lg">投稿する</button>
+            <div class="form-group">
+                <label for="category">誰にメッセージを送りますか？</label>
+                <select class="form-control col-sm-4" id="category">
+                    <option value="frontline">医療従事者の方々へ</option>
+                    <option value="stayhome">Stay Home　お家で過ごそう！</option>
+                    <option value="infected">感染者の方々へ</option>
+                </select>
             </div>
+            <div class="form-group mt-4"　autocomplete="off"></div>
+                <textarea id="message" placeholder="your message..." class="form-control mb-2 col-sm-8"></textarea>
+            <div class="mt-4">
+                <input type="file" id="setfile" >
             </div>
+            <button type="submit" class="btn btn-primary btn-lg mt-4">投稿する</button>
         </form>
-        <div id="imgSample" style="width: 320px; height: 240px; background-size:100% auto; background-position : 50% 50%;"></div>
+        <!-- <div id="imgSample" style="width: 320px; height: 240px; background-size:100% auto; background-position : 50% 50%;"></div> -->
 
-        <!-- /post -->
+        <!-- /form -->
 
         
         <!-- copyright -->
