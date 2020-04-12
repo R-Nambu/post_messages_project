@@ -24,7 +24,7 @@ const message = document.getElementById('message');
 const form = document.querySelector('form');
 const messages = document.getElementById('messages');
 const setfile = document.getElementById("setfile");
-const imgSample = document.getElementById("imgSample");
+// const imgSample = document.getElementById("imgSample");
 
 var file_name;
 var blob;
@@ -36,13 +36,18 @@ collection.orderBy('created').onSnapshot(snapshot => {
             li.textContent = change.doc.data().message;
             messages.appendChild(li);
             
-            const img = document.createElement('img');
-            img.src = change.doc.data().url;
-            img.height = 200; 
-            li.appendChild(img);
+            if (change.doc.data().url == null) {
+                // console.log('imageなし');
+            } else {
+                const img = document.createElement('img');
+                img.src = change.doc.data().url;
+                img.height = 200; 
+                li.appendChild(img);
+            }
         }
     })
 });
+
 
 
 form.addEventListener('submit', e => {
