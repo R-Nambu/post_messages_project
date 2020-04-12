@@ -18,13 +18,12 @@ firebase.analytics();
 
 const db = firebase.firestore();
 const storage = firebase.storage();
-
 const collection = db.collection('messages');
 const message = document.getElementById('message');
 const form = document.querySelector('form');
 const messages = document.getElementById('messages');
 const setfile = document.getElementById("setfile");
-// const imgSample = document.getElementById("imgSample");
+var category = document.getElementById("category");
 
 var file_name;
 var blob;
@@ -34,15 +33,28 @@ collection.orderBy('created').onSnapshot(snapshot => {
         if (change.type === 'added') {
             const li = document.createElement('li');
             li.textContent = change.doc.data().message;
-            messages.appendChild(li);
+            // console.log(li);
+            if (change.doc.data().category === 'frontline') {
+                messages_frontline.appendChild(li);
+            } else if (change.doc.data().category === 'stayhome') {
+                messages_stayhome.appendChild(li);
+            } else if (change.doc.data().category === 'infected') {
+                messages_infected.appendChild(li);
+            }
             
             if (change.doc.data().url == null) {
                 // console.log('imageなし');
             } else {
                 const img = document.createElement('img');
                 img.src = change.doc.data().url;
-                img.height = 200; 
-                li.appendChild(img);
+                img.height = 200;
+                if (change.doc.data().category === 'frontline') {
+                    messages_frontline.appendChild(img);
+                } else if (change.doc.data().category === 'stayhome') {
+                    messages_stayhome.appendChild(img);
+                } else if (change.doc.data().category === 'infected') {
+                    messages_infected.appendChild(img);
+                }
             }
         }
     })
@@ -53,21 +65,28 @@ collection.orderBy('created').onSnapshot(snapshot => {
 form.addEventListener('submit', e => {
     e.preventDefault();
     
+    var option = category.value;
+    
     const val = message.value.trim();
     if (val == ""){
         return;
     }
-    
+
+    const file = setfile.file;
+    if (file == ""){
+        return;
+    }
+
     message.value = '';
-    message.focus();
     
     collection.add({
+        category: option,
         message: val,
         created: firebase.firestore.FieldValue.serverTimestamp(),
         //以下、今後作成予定 
-        // category: ,
         // prefecture:
     })
+
 
     //処理に成功
     .then(doc => {
@@ -87,6 +106,8 @@ setfile.addEventListener('change', e => {
     
     form.addEventListener('submit', e => {
         e.preventDefault();
+
+        var option = category.value;
         
         var uploadRef = storage.ref('images/').child(file_name);
         uploadRef.put(blob).then(snapshot => {
@@ -96,10 +117,10 @@ setfile.addEventListener('change', e => {
             uploadRef.getDownloadURL()
             .then(url => {
                 collection.add({
+                    category: option,
                     url: url,
                     created: firebase.firestore.FieldValue.serverTimestamp(),
                     //以下、今後作成予定 
-                    //category: ,
                     // prefecture:
                 })
             }).catch(error => {
@@ -112,11 +133,3 @@ setfile.addEventListener('change', e => {
         blob = '';
     });
 });
-        
-message.focus();
-
-//   collection.get().then(snap => {
-//     size = snap.length;
-//     console.log(size);
-//     });
-
