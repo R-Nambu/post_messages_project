@@ -15,7 +15,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-
 const db = firebase.firestore();
 const storage = firebase.storage();
 const collection = db.collection('messages');
@@ -24,9 +23,17 @@ const form = document.querySelector('form');
 const messages = document.getElementById('messages');
 const setfile = document.getElementById("setfile");
 var category = document.getElementById("category");
+var posted = document.getElementById("posted");
 
 var file_name;
 var blob;
+
+
+db.collection('messages').get().then(snap => {
+    var size = snap.size;
+    posted.textContent = size;
+});
+
 
 collection.orderBy('created').onSnapshot(snapshot => {
     snapshot.docChanges().forEach(change => {
@@ -61,7 +68,6 @@ collection.orderBy('created').onSnapshot(snapshot => {
 });
 
 
-
 form.addEventListener('submit', e => {
     e.preventDefault();
     
@@ -86,7 +92,6 @@ form.addEventListener('submit', e => {
         //以下、今後作成予定 
         // prefecture:
     })
-
 
     //処理に成功
     .then(doc => {
@@ -125,8 +130,7 @@ setfile.addEventListener('change', e => {
                 })
             }).catch(error => {
                 console.log(error);
-            });
-                
+            });     
         });
         // valueリセットする
         file_name = '';

@@ -29,7 +29,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">top</a></li>
                     <li class="nav-item"><a class="nav-link" href="#profile">このProjectの願い</a></li>
                     <li class="nav-item"><a class="nav-link" href="#posts">寄せられたメッセージ一覧</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#table">昨日までの投稿数</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#table">現在の投稿数</a></li>
                     <li class="nav-item"><a class="nav-link" href="#submit">メッセージを投稿する</a></li>
                 </ul>
             </div>
@@ -87,24 +87,20 @@
         
         
         <!-- table -->
-        <h1 id="table" class="mt-5">昨日までの投稿数</h1>
+        <h1 id="table" class="mt-5">現在の投稿数</h1>
         <table class="table table-hover mb-5">
             <thead>
                 <tr>
                     <th scope="col">都道府県</th>
                     <th scope="col">昨日までの感染者数</th>
-                    <th scope="col">昨日までの投稿数</th>
+                    <th scope="col">現在の投稿数</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row">全国</th>
-                    <td>6,748</td>
-                    <td>
-                        <script type="text/javascript">
-                            console.log("aaa");
-                        </script>
-                    </td>
+                    <td>7,255</td>
+                    <td id="posted"></td>
                 </tr>
                 <!-- <tr>
                     <th scope="row">東京</th>
