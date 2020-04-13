@@ -35,7 +35,7 @@ db.collection('messages').get().then(snap => {
 });
 
 
-collection.orderBy('created').onSnapshot(snapshot => {
+collection.orderBy('created', "desc").onSnapshot(snapshot => {
     snapshot.docChanges().forEach(change => {
         if (change.type === 'added') {
             const li = document.createElement('li');
