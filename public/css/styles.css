@@ -9,6 +9,10 @@ h1 {
     font-weight: normal;
 }
 
+#title{
+    font-size:45px;
+}
+
 li {
     line-height: 2;
 }
@@ -18,3 +22,30 @@ input[type="text"] {
     font-size: 14px;
     width: 300px;
 }
+
+ul {
+    list-style: none;
+}
+
+/* li:nth-child(even) {
+    background:#CCCCCC;
+} */
+
+#messages_frontline li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#messages_stayhome li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#messages_infected li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* .nav-item {
+    background-color: aqua;
+} */
