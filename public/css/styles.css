@@ -9,6 +9,11 @@ h1 {
     font-weight: normal;
 }
 
+h3 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
 #title{
     font-size:45px;
 }
@@ -23,13 +28,9 @@ input[type="text"] {
     width: 300px;
 }
 
-ul {
+#messages_frontline {
     list-style: none;
 }
-
-/* li:nth-child(even) {
-    background:#CCCCCC;
-} */
 
 #messages_frontline li {
     padding-top: 7px;
@@ -41,11 +42,15 @@ ul {
     padding-bottom: 7px;
 }
 
+#messages_stayhome {
+    list-style: none;
+}
+
 #messages_infected li {
     padding-top: 7px;
     padding-bottom: 7px;
 }
 
-/* .nav-item {
-    background-color: aqua;
-} */
+#messages_infected {
+    list-style: none;
+}
