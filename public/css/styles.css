@@ -37,6 +37,10 @@ input[type="text"] {
     padding-bottom: 7px;
 }
 
+#messages_frontline li + li {
+    border-top:1px solid #666;
+}
+
 #messages_stayhome li {
     padding-top: 7px;
     padding-bottom: 7px;
@@ -46,6 +50,10 @@ input[type="text"] {
     list-style: none;
 }
 
+#messages_stayhome li + li {
+    border-top:1px solid #666;
+}
+
 #messages_infected li {
     padding-top: 7px;
     padding-bottom: 7px;
@@ -53,4 +61,8 @@ input[type="text"] {
 
 #messages_infected {
     list-style: none;
+}
+
+#messages_infected li + li {
+    border-top:1px solid #666;
 }
